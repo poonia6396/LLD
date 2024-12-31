@@ -5,14 +5,23 @@ class Board:
         self.breadth = breadth
         self.board = [[None]*breadth for i in range(length)]
     
-    def is_valid_move(self, row, column):
-        return self.board[row][column] == None
+    def is_valid_move(self, move_cordinates):
+        if len(move_cordinates) != 2:
+            return False
+            
+        if not(move_cordinates[0].isdigit() and int(move_cordinates[0]) < self.length):
+            return False
+        
+        if not(move_cordinates[1].isdigit() and int(move_cordinates[0]) < self.breadth):
+            return False
+        
+        return self.board[int(move_cordinates[0])][int(move_cordinates[1])] == None
     
     def register_move(self, move_cordinates, playing_piece):
-        row = int(move_cordinates[0])
-        column = int(move_cordinates[1])
-
-        if self.is_valid_move(row, column):
+        
+        if self.is_valid_move(move_cordinates):
+            row = int(move_cordinates[0])
+            column = int(move_cordinates[1])
             self.board[row][column] = playing_piece
             return True
         
