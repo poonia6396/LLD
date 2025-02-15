@@ -9,10 +9,9 @@ class BasicWinnerCalculator(WinnerCalculator.WinnerCalculator):
         row_check = column_check = diag_check = anti_diag_check = True
 
         piece = board_obj.board[row][column]
-
         #check column
         for i in range(board_obj.breadth):
-            if board_obj.board[row][i] != piece:
+            if board_obj.board[i][column] != piece:
                 column_check = False
                 break
         

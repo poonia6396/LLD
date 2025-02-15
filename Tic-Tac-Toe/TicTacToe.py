@@ -1,6 +1,11 @@
+from typing import List
+
+from service.WinnerCalculator import WinnerCalculator
+from model.Player import Player
+
 class TicTacToe:
 
-    def __init__(self, board, players, winner_calculator):
+    def __init__(self, board, players: List[Player], winner_calculator: WinnerCalculator):
         self.board = board
         self.players = players
         self.winner_calculator = winner_calculator
