@@ -1,6 +1,6 @@
 from SnakesLadder import SnakesLadder
 from model import player
-from service.basic_winner_calculator import BasicWinnerCalculator
+from service.WinnerCalculator import BasicWinnerCalculator
 from service.BoardGenerator import BasicBoardGenerator
 
 class Driver:
