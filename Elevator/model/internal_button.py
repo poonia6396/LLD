@@ -1,3 +1,6 @@
+from typing import List
+from service.button_dispatcher import ButtonDispatcher
+
 class InternalButton:
     def __init__(self, value):
         self.value = value
@@ -5,7 +8,7 @@ class InternalButton:
 
 class InternalButtonConsole:
     
-    def __init__(self, internal_buttons, internal_button_dispatcher):
+    def __init__(self, internal_buttons: List[InternalButton], internal_button_dispatcher: ButtonDispatcher):
         self.internal_buttons = internal_buttons
         self.internal_button_dispatcher = internal_button_dispatcher
     
