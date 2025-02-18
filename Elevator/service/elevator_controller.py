@@ -54,28 +54,29 @@ class ElevatorController:
 
         elevator_direction = self.__elevator_car.get_direction()
         next_floor = None
-
-        if elevator_direction == Direction.UP:
-            if self.__up_requests:
-                next_floor = heapq.heappop(self.__up_requests)
-            elif self.__down_requests:
-                # No more upward stops; change direction.
-                self.__elevator_car.set_direction(Direction.DOWN)
-                next_floor = -heapq.heappop(self.__down_requests)
-        elif elevator_direction == Direction.DOWN:
-            if self.__down_requests:
-                next_floor = -heapq.heappop(self.__down_requests)
-            elif self.__up_requests:
-                self.__elevator_car.set_direction(Direction.UP)
-                next_floor = heapq.heappop(self.__up_requests)
-        else:
-            # Elevator is idle. Decide based on available requests.
-            if self.__up_requests:
-                self.__elevator_car.set_direction(Direction.UP)
-                next_floor = heapq.heappop(self.__up_requests)
-            elif self.__down_requests:
-                self.__elevator_car.set_direction(Direction.DOWN)
-                next_floor = -heapq.heappop(self.__down_requests)
+        
+        with self.__lock:
+            if elevator_direction == Direction.UP:
+                if self.__up_requests:
+                    next_floor = heapq.heappop(self.__up_requests)
+                elif self.__down_requests:
+                    # No more upward stops; change direction.
+                    self.__elevator_car.set_direction(Direction.DOWN)
+                    next_floor = -heapq.heappop(self.__down_requests)
+            elif elevator_direction == Direction.DOWN:
+                if self.__down_requests:
+                    next_floor = -heapq.heappop(self.__down_requests)
+                elif self.__up_requests:
+                    self.__elevator_car.set_direction(Direction.UP)
+                    next_floor = heapq.heappop(self.__up_requests)
+            else:
+                # Elevator is idle. Decide based on available requests.
+                if self.__up_requests:
+                    self.__elevator_car.set_direction(Direction.UP)
+                    next_floor = heapq.heappop(self.__up_requests)
+                elif self.__down_requests:
+                    self.__elevator_car.set_direction(Direction.DOWN)
+                    next_floor = -heapq.heappop(self.__down_requests)
 
         if next_floor is not None:
             self.__move_to_floor(next_floor)
