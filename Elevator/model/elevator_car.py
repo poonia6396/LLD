@@ -1,5 +1,8 @@
-from direction import Direction
 import itertools
+import time
+
+from .direction import Direction
+
 
 class ElevatorCar:
     id_iter = itertools.count()
@@ -22,6 +25,7 @@ class ElevatorCar:
         while self.__current_floor != destination_floor:
             self.__current_floor += direction_adder
             print("Lift at "+str(self.__current_floor)+" and going "+self.__direction.name)
+            time.sleep(1)
     
     def get_id(self) -> int:
         return self.__id

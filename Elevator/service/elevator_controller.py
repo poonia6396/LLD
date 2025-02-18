@@ -20,6 +20,12 @@ class ElevatorController:
     def get_elevator_id(self):
         return self.__elevator_car.get_id()
     
+    def get_elevator_direction(self):
+        return self.__elevator_car.get_direction()
+
+    def get_elevator_floor(self):
+        return self.__elevator_car.get_current_floor()
+    
     def accept_request(self, request: Request) -> bool:
         elevator_direction = self.__elevator_car.get_direction()
         elevator_floor = self.__elevator_car.get_current_floor()
@@ -54,7 +60,7 @@ class ElevatorController:
 
         elevator_direction = self.__elevator_car.get_direction()
         next_floor = None
-        
+
         with self.__lock:
             if elevator_direction == Direction.UP:
                 if self.__up_requests:
@@ -92,9 +98,11 @@ class ElevatorController:
             self.process_next_request()
 
     def start(self):
+        print("Starting Elevator with id: ", self.__elevator_car.get_id())
         if not self.__running:
             self.__running = True
             threading.Thread(target=self.__run, daemon=True).start()
 
     def stop(self):
+        print("Stopping Elevator with id: ", self.__elevator_car.get_id())
         self.__running = False
