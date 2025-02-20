@@ -1,16 +1,13 @@
 from typing import List
 from service.button_dispatcher import ButtonDispatcher
 
-class InternalButton:
-    def __init__(self, value):
-        self.value = value
-
+from model.request import Request
 
 class InternalButtonConsole:
     
-    def __init__(self, internal_buttons: List[InternalButton], internal_button_dispatcher: ButtonDispatcher):
+    def __init__(self, internal_buttons: List[int], internal_button_dispatcher: ButtonDispatcher):
         self.internal_buttons = internal_buttons
         self.internal_button_dispatcher = internal_button_dispatcher
     
-    def press_button(self, internal_button, elevator_car):
-        self.internal_button_dispatcher.make_request(internal_button.value, elevator_car)
+    def press_button(self, internal_button, elevator_car_id: int):
+        self.internal_button_dispatcher.make_request(Request(internal_button, elevator_id=elevator_car_id))
