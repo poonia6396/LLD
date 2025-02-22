@@ -1,12 +1,12 @@
 from movie import Movie
 from typing import List
 
-from model.seat import Seat
+from model.theatre import Screen
 
 class Show:
 
-    def __init__(self, movie: Movie, seats: List[Seat], start_time, end_time):
+    def __init__(self, movie: Movie, screen: Screen, start_time, end_time):
         self.__movie = movie
         self.__start_time = start_time
         self.__end_time = end_time
-        self.__seats = seats
+        self.__screen = screen
