@@ -1,18 +1,12 @@
-from typing import List
 import itertools
-from enum import Enum
-
-
-class SeatStatus(Enum):
-    AVAILABLE, BOOKED = 1, 2
-
 
 class Seat:
 
-    def __init__(self, number, status: SeatStatus):
+    def __init__(self, number):
         self.__number = number
-        self.__status = status
 
+    def get_number(self):
+        return self.__number
 
 class Screen:
 

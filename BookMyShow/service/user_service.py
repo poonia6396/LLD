@@ -1,6 +1,7 @@
 from typing import List
 
 from model.user import User
+from exceptions import AlreadyExistError
 
 class UserService:
 
@@ -9,7 +10,7 @@ class UserService:
     
     def create_user(self, username):
         if username in self.__users:  
-            print("User creation failed. User with username:", username, "exists.")
+            raise AlreadyExistError(msg="User already exists")
         user = User(username)
         self.__users.append(user)
         return user
