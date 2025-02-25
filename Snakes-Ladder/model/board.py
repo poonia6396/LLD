@@ -3,10 +3,10 @@ from service import BoardPrinter
 
 class Board:
 
-    def __init__(self, dimension, baord_printer: BoardPrinter):
+    def __init__(self, dimension, board_printer: BoardPrinter):
         self.dimension = dimension
         self.cells = [[Cell((row*dimension) + col + 1) for col in range(dimension)] for row in range(dimension)]
-        self.board_printer = baord_printer
+        self.board_printer = board_printer
     
     def get_cell_from_position(self, position):
         if position > 0 and position < (self.dimension*self.dimension):
