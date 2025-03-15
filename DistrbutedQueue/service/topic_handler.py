@@ -4,7 +4,7 @@ from model.topic import Topic
 class TopicHandler:
 
     def __init__(self):
-        self.__topics_map: {}
+        self.__topics_map = {}
     
     def publish(self, topic_id, message):
         topic = self.__topics_map[topic_id]

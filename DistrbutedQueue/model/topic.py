@@ -1,7 +1,7 @@
 import itertools
 from typing import List
 
-from .topic_subscriber import TopicSubsriber
+from .topic_subscriber import TopicSubscriber
 
 class Topic:
 
@@ -10,7 +10,7 @@ class Topic:
         self.__id = next(self.id_iter)
         self.__name = name
         self.__messages = []
-        self.__topic_subscribers: List[TopicSubsriber] = []
+        self.__topic_subscribers: List[TopicSubscriber] = []
     
     def get_id(self):
         return self.__id
